@@ -23,8 +23,18 @@ div#root {
 .dummy_head {
     width: 100%;
     height: 80px;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
+.dummy_head .container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100%;
+}
 header {
     width: 100%;
     border-bottom: 1px solid #e2e1e1;
@@ -34,9 +44,9 @@ header {
 }
 
 .main_menu_wrap {
-    padding: 0 15px;
+    /* padding: 0 15px; */
     float: left;
-    width: 100%;
+    /* width: 100%; */
     box-sizing: border-box;
 }
 
@@ -101,6 +111,7 @@ a.main_menu_item.active:before {
     width: 100%;
     height: 100%;
     padding-bottom: 10px;
+    margin-top: 10px;
 }
 
 @keyframes dropDown {
@@ -214,4 +225,46 @@ a.secondary_list_item {
     background: #000;
     border-color: #000;
     color: #fff;
+}
+
+.logo {
+    width: 25%;
+    background: #cecccc;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.search_bar {
+    width: 60%;
+    height: 100%;
+    background: #bfbfbf;
+}
+
+.icon_wrap {
+    width: 25%;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.menus_wrap {
+    display: flex;
+    flex-direction: revert;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sub_menu_wrap {
+    float: right;
+}
+
+.sub_menu_wrap a {
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 10px;
+    color: #000;
+    transition: all 0.4s;
+}
+
+.sub_menu_wrap a:hover {
+    color: rgb(128, 128, 128);
 }

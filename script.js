@@ -63,8 +63,17 @@ window.addEventListener('load', () => {
         },
         template:
             '<div class="menu_bar" @mouseleave="showDrop=false;" >\
-                        <div class="main_menu_wrap container">\
-                            <a :class="[\'main_menu_item \' + ((hoveredMenuItem && showDrop && hoveredMenuItem.id===menuItem.id)?\'active\':\'\')]" @mouseover="showDrop=true; hoveredMenuItem=menuItem" v-for="menuItem in menuData" :href="menuItem.link">{{menuItem.title}}</a>\
+                        <div class="container menus_wrap">\
+                            <div class="main_menu_wrap">\
+                                <a :class="[\'main_menu_item \' + ((hoveredMenuItem && showDrop && hoveredMenuItem.id===menuItem.id)?\'active\':\'\')]" @mouseover="showDrop=true; hoveredMenuItem=menuItem" v-for="menuItem in menuData" :href="menuItem.link">{{menuItem.title}}</a>\
+                            </div>\
+                            <div class="sub_menu_wrap">\
+                                <a href="#">Link</a>\
+                                <a href="#">Link 1</a>\
+                                <a href="#">Link 2</a>\
+                                <a href="#">Link 3</a>\
+                                <a href="#">Link 4</a>\
+                            </div>\
                         </div>\
                         <desktop-drop :show="showDrop" :hoveredItem="hoveredMenuItem"/>\
                     </div>',
