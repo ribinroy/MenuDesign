@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
         props: ['show', 'hoveredItem'],
         template:
             "<div :class=\"['drop_down_wrap ' + (show?'active':'')]\">\
-                <div class='container'>\
+                <div class='container' v-if='hoveredItem'>\
                     <div class='secondary_main_wrap_left'>\
                         <div class='secondary_column'  v-if='sortedItems && sortedItems.length>0' v-for='menuItems in sortedItems'>\
                             <div class='secondary_wrap' v-if='menuItems.length>0' v-for='menuItem in menuItems'>\
@@ -85,11 +85,35 @@ window.addEventListener('load', () => {
         },
     };
 
+    menu = {
+        data: function () {
+            return {
+                isDesktopView: true,
+            };
+        },
+        template: '<menu-desktop v-if="isDesktopView"></menu-desktop>',
+        components: {
+            'menu-desktop': menuDesktop,
+        },
+        methods: {
+            verifyViewport: function () {
+                this.isDesktopView = window.innerWidth >= 1250;
+            },
+        },
+        mounted: function () {
+            const _this = this;
+            this.verifyViewport();
+            window.addEventListener('resize', function () {
+                _this.verifyViewport();
+            });
+        },
+    };
+
     window.menuVue = new Vue({
         el: '#root',
         data: {},
         components: {
-            'menu-desktop': menuDesktop,
+            'menu-component': menu,
         },
     });
 });
