@@ -94,11 +94,21 @@ window.addEventListener('load', () => {
             '<div>\
                 <div class="menu-overlay"></div>\
                 <div class="menu_panel">\
-                    <div class="menu_panel_header">Menu</div>\
+                    <div class="menu_panel_header">Meny</div>\
                     <div class="menu_panel_items_wrap">\
                         <div class="menu_panel_item back_button" @click="backClickHandler()" v-if="selectedLev2 || selectedLev1">Back</div>\
                         <a class="menu_panel_item everything" v-if="highestSelectedLayerItem" :href="highestSelectedLayerItem.link">Allt inom {{highestSelectedLayerItem.title}}</a>\
                         <a class="menu_panel_item" v-for="menuItem in lists" @click="clickHandler($event, menuItem)" :href="menuItem.link">{{menuItem.title}}</a>\
+                        <div class="sub_menu_mobile_wrap">\
+                            <a class="menu_panel_item" href="#">Link</a>\
+                            <a class="menu_panel_item" href="#">Link 1</a>\
+                            <a class="menu_panel_item" href="#">Link 2</a>\
+                            <a class="menu_panel_item" href="#">Link 3</a>\
+                            <a class="menu_panel_item" href="#">Link 4</a>\
+                        </div>\
+                        <div class="panel_footer">\
+                            <p>Följ oss</p>\
+                        </div>\
                     </div>\
                 </div>\
             </div>',

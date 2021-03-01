@@ -328,7 +328,7 @@ a.secondary_list_item {
         opacity: 0;
     }
     to {
-        opacity: 1;
+        opacity: 0.5;
     }
 }
 
@@ -338,4 +338,22 @@ a.secondary_list_item {
 
 a.menu_panel_item.everything {
     font-weight: 500;
+}
+
+.sub_menu_mobile_wrap {
+    float: left;
+    width: 100%;
+    margin-top: 90px;
+    border-top: 1px solid #e6e6e6;
+}
+
+.panel_footer {
+    min-height: 189px;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    float: left;
+    text-align: center;
+    padding-top: 40px;
+    box-sizing: border-box;
 }
