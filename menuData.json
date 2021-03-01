@@ -1,8 +1,26 @@
 [
     {
         "id": 1,
-        "name": "Möbler",
-        "url": "/Mobler",
-        "list": []
+        "title": "Möbler",
+        "link": "/Mobler",
+        "list": [
+            {
+                "title": "Stolar och pallar",
+                "link": "stolar-ocj-pallar",
+                "list": [{ "title": "Stolar", "link": "/stolar" }]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Belysning",
+        "link": "/belysning",
+        "list": [
+            {
+                "title": "Lampor",
+                "link": "lampor",
+                "list": [{ "title": "Jubbeling", "link": "/jubbeling" }]
+            }
+        ]
     }
 ]
