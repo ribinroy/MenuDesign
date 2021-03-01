@@ -209,8 +209,8 @@ a.secondary_list_item {
 }
 
 .button {
-    border: 1px solid #cccccc;
-    background: #f6f6fa;
+    /* border: 1px solid #cccccc; */
+    background: #e4e4e4;
     padding: 4px;
     font-size: 11px;
     margin-top: 5px;
@@ -223,7 +223,7 @@ a.secondary_list_item {
 
 .button:hover {
     background: #000;
-    border-color: #000;
+    /* border-color: #000; */
     color: #fff;
 }
 
@@ -267,4 +267,75 @@ a.secondary_list_item {
 
 .sub_menu_wrap a:hover {
     color: rgb(128, 128, 128);
+}
+
+.menu_panel {
+    position: fixed;
+    right: 0;
+    background: #fff;
+    width: 400px;
+    top: 0;
+    height: 100vh;
+    z-index: 9999;
+    box-sizing: border-box;
+}
+
+.menu_panel_header {
+    padding: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+.menu_panel_items_wrap {
+    overflow-y: auto;
+    float: left;
+    width: 100%;
+    height: calc(100% - 50px);
+}
+
+.menu_panel_item {
+    width: 100%;
+    float: left;
+    display: block;
+    color: #000;
+    text-decoration: none;
+    padding: 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 16px;
+    transition: all 0.4s;
+}
+
+.menu_panel_item:hover {
+    background: #f7f7f7;
+}
+
+.menu-overlay {
+    background: #000;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: 0.5;
+    animation: fadeIn 0.4s 1;
+    z-index: 99;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.menu_panel_item.back_button {
+    font-size: 12px;
+}
+
+a.menu_panel_item.everything {
+    font-weight: 500;
 }

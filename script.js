@@ -16,10 +16,10 @@ window.addEventListener('load', () => {
                         </div>\
                     </div>\
                     <div class='secondary_main_wrap_right'>\
-                        <div class='image_wrap' v-if='hoveredItem && hoveredItem.image_link'>\
-                            <img :src='hoveredItem.image_link'/>\
+                        <a class='image_wrap' :href='hoveredItem.image_link' v-if='hoveredItem && hoveredItem.image_link'>\
+                            <img :src='hoveredItem.image'/>\
                             <p>{{hoveredItem.image_text}}</p>\
-                        </div>\
+                        </a>\
                     </div>\
                 </div>\
             </div>",
@@ -54,9 +54,9 @@ window.addEventListener('load', () => {
     };
 
     menuDesktop = {
+        props: ['menuData'],
         data: function () {
             return {
-                menuData: [],
                 showDrop: true,
                 hoveredMenuItem: null,
             };
@@ -80,7 +80,95 @@ window.addEventListener('load', () => {
         components: {
             'desktop-drop': desktopDrop,
         },
+    };
+
+    menuMobile = {
+        props: ['menuData'],
+        data: function () {
+            return {
+                selectedLev1: null,
+                selectedLev2: null,
+            };
+        },
+        template:
+            '<div>\
+                <div class="menu-overlay"></div>\
+                <div class="menu_panel">\
+                    <div class="menu_panel_header">Menu</div>\
+                    <div class="menu_panel_items_wrap">\
+                        <div class="menu_panel_item back_button" @click="backClickHandler()" v-if="selectedLev2 || selectedLev1">Back</div>\
+                        <a class="menu_panel_item everything" v-if="highestSelectedLayerItem" :href="highestSelectedLayerItem.link">Allt inom {{highestSelectedLayerItem.title}}</a>\
+                        <a class="menu_panel_item" v-for="menuItem in lists" @click="clickHandler($event, menuItem)" :href="menuItem.link">{{menuItem.title}}</a>\
+                    </div>\
+                </div>\
+            </div>',
+        methods: {
+            backClickHandler: function () {
+                if (this.selectedLev2) this.selectedLev2 = null;
+                else if (this.selectedLev1) this.selectedLev1 = null;
+            },
+            clickHandler: function (e, item) {
+                if (!this.selectedLev1 || !this.selectedLev2)
+                    e.preventDefault();
+                if (!this.selectedLev1) this.selectedLev1 = item;
+                else if (!this.selectedLev2) this.selectedLev2 = item;
+            },
+        },
+        computed: {
+            highestSelectedLayerItem: function () {
+                return this.selectedLev2
+                    ? this.selectedLev2
+                    : this.selectedLev1
+                    ? this.selectedLev1
+                    : null;
+            },
+            lists: function () {
+                const _this = this;
+                if (this.selectedLev2) {
+                    return this.selectedLev2.list &&
+                        this.selectedLev2.list.length > 0
+                        ? this.selectedLev2.list
+                        : [];
+                }
+                if (this.selectedLev1) {
+                    const matches = this.menuData.filter(
+                        (el) => el.id === _this.selectedLev1.id
+                    );
+                    return matches.length > 0 &&
+                        matches[0] &&
+                        matches[0].list.length > 0
+                        ? matches[0].list
+                        : [];
+                }
+                return this.menuData;
+            },
+        },
+        components: {
+            'desktop-drop': desktopDrop,
+        },
+    };
+
+    menu = {
+        data: function () {
+            return {
+                isDesktopView: true,
+                menuData: [],
+            };
+        },
+        template:
+            '<div><menu-desktop v-if="isDesktopView" :menuData="menuData"></menu-desktop>\
+            <menu-panel v-if="!isDesktopView" :menuData="menuData"></menu-panel></div>',
+        components: {
+            'menu-desktop': menuDesktop,
+            'menu-panel': menuMobile,
+        },
+        methods: {
+            verifyViewport: function () {
+                this.isDesktopView = window.innerWidth >= 1250;
+            },
+        },
         mounted: function () {
+            const _this = this;
             fetch('/menuData.json')
                 .then((r) => r.json())
                 .then(
@@ -91,26 +179,6 @@ window.addEventListener('load', () => {
                         console.log('Error loading json:', response);
                     }
                 );
-        },
-    };
-
-    menu = {
-        data: function () {
-            return {
-                isDesktopView: true,
-            };
-        },
-        template: '<menu-desktop v-if="isDesktopView"></menu-desktop>',
-        components: {
-            'menu-desktop': menuDesktop,
-        },
-        methods: {
-            verifyViewport: function () {
-                this.isDesktopView = window.innerWidth >= 1250;
-            },
-        },
-        mounted: function () {
-            const _this = this;
             this.verifyViewport();
             window.addEventListener('resize', function () {
                 _this.verifyViewport();
