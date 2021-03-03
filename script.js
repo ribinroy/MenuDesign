@@ -226,7 +226,7 @@ window.addEventListener('load', () => {
     };
 
     window.menuVue = new Vue({
-        el: '#root',
+        el: '#menu_root',
         data: {
             isMobMenuOpen: false,
         },
