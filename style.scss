@@ -51,8 +51,14 @@ div#menu_root {
                 align-items: center;
                 color: #b2b2b2 !important;
                 font-weight: 600;
+                width: 40%;
 
+                &:nth-child(1),
+                &:nth-child(3) {
+                    width: 30%;
+                }
                 &.last_one {
+                    justify-content: flex-end;
                     a {
                         margin-left: 15px;
                     }
@@ -98,7 +104,7 @@ div#menu_root {
             height: 100%;
 
             .logo {
-                width: 25%;
+                width: 20%;
                 // background: #cecccc;
                 height: 100%;
                 margin-right: 10px;
@@ -109,7 +115,7 @@ div#menu_root {
                 font-size: 40px;
             }
             .search_bar {
-                width: 60%;
+                width: 75%;
                 height: 100%;
                 // background-color: red;
                 display: flex;
@@ -117,7 +123,7 @@ div#menu_root {
                 align-items: center;
 
                 .search_input {
-                    width: calc(100% - 80px);
+                    width: calc(100% - 60px);
                     box-sizing: border-box;
                     /* padding: 14px 16px; */
                     height: 48px;
@@ -131,25 +137,39 @@ div#menu_root {
                     border-radius: 2px;
                     box-shadow: #0000000a 0px 1px 3px 0px inset;
                     appearance: none;
+
+                    &:focus {
+                        outline: none;
+                        & ~ .search_icon {
+                            background-color: #000 !important;
+
+                            svg path {
+                                fill: #fff !important;
+                            }
+                        }
+                    }
                 }
 
                 .search_icon {
                     box-sizing: border-box;
-                    width: 80px;
+                    width: 60px;
                     background: #f2f2f2;
                     height: 48px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     cursor: pointer;
+                    transition: all 0.2s;
 
                     svg {
-                        height: 30px;
+                        transition: all 0.2s;
+                        height: 20px;
+                        fill: #000 !important;
                     }
                 }
             }
             .icon_wrap {
-                width: 25%;
+                width: 15%;
                 height: 100%;
                 margin-left: 10px;
                 display: flex;
@@ -606,6 +626,11 @@ div#menu_root {
         .top-stick {
             .container {
                 justify-content: center;
+                .item:nth-child(2) {
+                    width: 100%;
+                    font-weight: normal;
+                    justify-content: center;
+                }
                 .item:nth-child(1),
                 .item:nth-child(3) {
                     display: none;
